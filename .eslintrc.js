@@ -39,18 +39,18 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'no-underscore-dangle': 'off',
     'no-tabs': 0,
-    'i18next/no-literal-string': ['error', { markupOnly: true, ignoreAttribute: ['data-testid'] }],
+    'i18next/no-literal-string': ['error', { markupOnly: true, ignoreAttribute: ['data-testid', 'to'] }],
     'max-len': ['error', 150, { ignoreComments: true }],
   },
   globals: {
     __IS_DEV_: true,
   },
-  overriders: [
+  overrides: [
     {
       files: ['**/src/**/*.test.{ts,tsx}'],
       rules: {
-        'i18next/no-literal-string': 'off'
-      }
+        'i18next/no-literal-string': 'off',
+      },
     },
   ],
 };
