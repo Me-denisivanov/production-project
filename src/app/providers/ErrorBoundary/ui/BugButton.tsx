@@ -5,6 +5,7 @@ import { Button } from 'shared/ui/Button/Button';
 // Component for testing ErrorBoundary
 export const BugButton = () => {
   const [error, setError] = useState(false);
+
   const { t } = useTranslation();
 
   const onThrow = () => setError(true);

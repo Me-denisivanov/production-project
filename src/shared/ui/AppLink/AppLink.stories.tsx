@@ -29,8 +29,6 @@ Secondary.args = {
   theme: AppLinkTheme.SECONDARY,
 };
 
-//
-
 export const PrimaryDark = Template.bind({});
 PrimaryDark.args = {
   children: 'Text',
