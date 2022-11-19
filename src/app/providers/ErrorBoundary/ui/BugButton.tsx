@@ -4,19 +4,19 @@ import { Button } from 'shared/ui/Button/Button';
 
 // Component for testing ErrorBoundary
 export const BugButton = () => {
-  const [error, setError] = useState(false);
+    const [error, setError] = useState(false);
 
-  const { t } = useTranslation();
+    const { t } = useTranslation();
 
-  const onThrow = () => setError(true);
+    const onThrow = () => setError(true);
 
-  useEffect(() => {
-    if (error) throw new Error();
-  }, [error]);
+    useEffect(() => {
+        if (error) throw new Error();
+    }, [error]);
 
-  return (
-    <Button onClick={onThrow}>
-      {t('throw Error')}
-    </Button>
-  );
+    return (
+        <Button onClick={onThrow}>
+            {t('throw Error')}
+        </Button>
+    );
 };

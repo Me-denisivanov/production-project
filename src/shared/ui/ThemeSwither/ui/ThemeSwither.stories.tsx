@@ -5,14 +5,14 @@ import { Theme } from 'app/providers/ThemeProvider';
 import { ThemeSwither } from './ThemeSwither';
 
 export default {
-  title: 'shared/ThemeSwither',
-  component: ThemeSwither,
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
-  args: {
-    to: '/',
-  },
+    title: 'shared/ThemeSwither',
+    component: ThemeSwither,
+    argTypes: {
+        backgroundColor: { control: 'color' },
+    },
+    args: {
+        to: '/',
+    },
 } as ComponentMeta<typeof ThemeSwither>;
 
 const Template: ComponentStory<typeof ThemeSwither> = (args) => <ThemeSwither {...args} />;

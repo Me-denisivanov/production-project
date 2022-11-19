@@ -12,18 +12,18 @@ export interface ComponentRenderOptions {
 }
 
 export function componentRender(component: ReactNode, options: ComponentRenderOptions = {}) {
-  const {
-    route = '/',
-    initialState,
-  } = options;
+    const {
+        route = '/',
+        initialState,
+    } = options;
 
-  return render(
-    <StoreProvider initialState={initialState}>
-      <MemoryRouter initialEntries={[route]}>
-        <I18nextProvider i18n={i18nForTests}>
-          {component}
-        </I18nextProvider>
-      </MemoryRouter>
-    </StoreProvider>,
-  );
+    return render(
+        <StoreProvider initialState={initialState}>
+            <MemoryRouter initialEntries={[route]}>
+                <I18nextProvider i18n={i18nForTests}>
+                    {component}
+                </I18nextProvider>
+            </MemoryRouter>
+        </StoreProvider>,
+    );
 }
