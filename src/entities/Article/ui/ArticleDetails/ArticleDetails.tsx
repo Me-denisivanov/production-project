@@ -25,20 +25,20 @@ interface ArticleDetailsProps {
 }
 
 const reducers: ReducersList = {
-    articleDetails: articleDetailsReducer,
+  articleDetails: articleDetailsReducer,
 };
 
 export const ArticleDetails = memo((props: ArticleDetailsProps) => {
-    const { className, id } = props;
-    const { t } = useTranslation();
+  const { className, id } = props;
+  const { t } = useTranslation();
 
-    const dispatch = useAppDispatch();
-    const isLoading = useSelector(getArticleDetailsIsLoading);
-    const article = useSelector(getArticleDetailsData);
-    const error = useSelector(getArticleDetailsError);
+  const dispatch = useAppDispatch();
+  const isLoading = useSelector(getArticleDetailsIsLoading);
+  const article = useSelector(getArticleDetailsData);
+  const error = useSelector(getArticleDetailsError);
 
-    const renderBlock = useCallback((block: ArticleBlock) => {
-        /* eslint-disable indent */
+  const renderBlock = useCallback((block: ArticleBlock) => {
+    /* eslint-disable indent */
         switch (block.type) {
             case ArticleBlockType.CODE:
                 return <ArticleCodeBlockComponent key={block.id} className={cls.block} block={block} />;
@@ -60,56 +60,56 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
     let content;
     if (isLoading) {
         content = (
-            <>
-                <Skeleton className={cls.avatar} width={200} height={200} border="50%" />
-                <Skeleton className={cls.title} width={300} height={32} />
-                <Skeleton className={cls.skeleton} width={600} height={24} />
-                <Skeleton className={cls.skeleton} width="100%" height={200} />
-                <Skeleton className={cls.skeleton} width="100%" height={200} />
-            </>
+          <>
+            <Skeleton className={cls.avatar} width={200} height={200} border="50%" />
+            <Skeleton className={cls.title} width={300} height={32} />
+            <Skeleton className={cls.skeleton} width={600} height={24} />
+            <Skeleton className={cls.skeleton} width="100%" height={200} />
+            <Skeleton className={cls.skeleton} width="100%" height={200} />
+          </>
         );
     } else if (error) {
         content = (
-            <Text
-                align={TextAlign.CENTER}
-                title={t('Произошла ошибка при загрузке статьи. ')}
-            />
+          <Text
+            align={TextAlign.CENTER}
+            title={t('Произошла ошибка при загрузке статьи. ')}
+          />
         );
     } else {
         content = (
-            <>
-                <div className={cls.avatarWrapper}>
-                    <Avatar
-                        size={200}
-                        src={article?.img}
-                        className={cls.avatar}
-                    />
-                </div>
-                <Text
-                    className={cls.title}
-                    title={article?.title}
-                    text={article?.subtitle}
-                    size={TextSize.L}
-                />
-                <div className={cls.articleInfo}>
-                    <Icon className={cls.icon} Svg={EyeIcon} />
-                    <Text text={String(article?.views)} />
-                </div>
-                <div className={cls.articleInfo}>
-                    <Icon className={cls.icon} Svg={CalendarIcon} />
-                    <Text text={article?.createdAt} />
-                </div>
-                {article?.blocks.map(renderBlock)}
-            </>
+          <>
+            <div className={cls.avatarWrapper}>
+              <Avatar
+                size={200}
+                src={article?.img}
+                className={cls.avatar}
+              />
+            </div>
+            <Text
+              className={cls.title}
+              title={article?.title}
+              text={article?.subtitle}
+              size={TextSize.L}
+            />
+            <div className={cls.articleInfo}>
+              <Icon className={cls.icon} Svg={EyeIcon} />
+              <Text text={String(article?.views)} />
+            </div>
+            <div className={cls.articleInfo}>
+              <Icon className={cls.icon} Svg={CalendarIcon} />
+              <Text text={article?.createdAt} />
+            </div>
+            {article?.blocks.map(renderBlock)}
+          </>
         );
     }
 
     return (
-        <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <div className={classNames(cls.ArticleDetails, {}, [className])}>
-                {content}
-            </div>
+      <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
+        <div className={classNames(cls.ArticleDetails, {}, [className])}>
+          {content}
+        </div>
 
-        </DynamicModuleLoader>
+      </DynamicModuleLoader>
     );
 });

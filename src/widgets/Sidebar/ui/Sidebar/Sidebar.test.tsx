@@ -4,16 +4,16 @@ import { componentRender } from 'shared/lib/tests/ComponentRender/ComponentRende
 import { Sidebar } from 'widgets/Sidebar/ui/Sidebar/Sidebar';
 
 describe('Sidebar', () => {
-    test('with only one param', () => {
-        componentRender(<Sidebar />);
-        expect(screen.getByTestId('sidebar')).toBeInTheDocument();
-    });
+  test('with only one param', () => {
+    componentRender(<Sidebar />);
+    expect(screen.getByTestId('sidebar')).toBeInTheDocument();
+  });
 
-    test('test toggle', () => {
-        componentRender(<Sidebar />);
-        const toggleBtn = screen.getByTestId('sidebar-toggle');
-        expect(screen.getByTestId('sidebar')).toBeInTheDocument();
-        fireEvent.click(toggleBtn);
-        expect(screen.getByTestId('sidebar')).toHaveClass('collapsed');
-    });
+  test('test toggle', () => {
+    componentRender(<Sidebar />);
+    const toggleBtn = screen.getByTestId('sidebar-toggle');
+    expect(screen.getByTestId('sidebar')).toBeInTheDocument();
+    fireEvent.click(toggleBtn);
+    expect(screen.getByTestId('sidebar')).toHaveClass('collapsed');
+  });
 });

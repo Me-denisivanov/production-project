@@ -4,12 +4,12 @@ import { buildCssLoader } from '../build/loaders/buildCssLoader';
 import { BuildPaths } from '../build/types/config';
 
 export default ({ config }: {config: webpack.Configuration}) => {
-    const paths: BuildPaths = {
-        build: '',
-        entry: '',
-        html: '',
-        src: path.resolve(__dirname, '..', '..', 'src'),
-    };
+  const paths: BuildPaths = {
+    build: '',
+    entry: '',
+    html: '',
+    src: path.resolve(__dirname, '..', '..', 'src'),
+  };
     // config.resolve?.modules?.push(paths.src);
     config.resolve!.modules!.unshift(paths.src);
 
@@ -18,22 +18,22 @@ export default ({ config }: {config: webpack.Configuration}) => {
     // eslint-disable-next-line no-param-reassign
     // @ts-ignore
     config!.module!.rules = config.module!.rules!.map((rule: RuleSetRule) => {
-        if (/svg/.test(rule.test as string)) {
-            return { ...rule, exclude: /\.svg$/i };
-        }
+      if (/svg/.test(rule.test as string)) {
+        return { ...rule, exclude: /\.svg$/i };
+      }
 
-        return rule;
+      return rule;
     });
 
     config!.module!.rules.push({
-        test: /\.svg$/,
-        use: ['@svgr/webpack'],
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
     });
     config!.module!.rules.push(buildCssLoader(true));
     config!.plugins!.push(new DefinePlugin({
-        __IS_DEV_: true,
-        __API__: JSON.stringify(''),
-        __PROJECT__: JSON.stringify('storybook'),
+      __IS_DEV_: true,
+      __API__: JSON.stringify(''),
+      __PROJECT__: JSON.stringify('storybook'),
     }));
 
     return config;

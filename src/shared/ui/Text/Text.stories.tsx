@@ -5,61 +5,61 @@ import { Theme } from 'app/providers/ThemeProvider';
 import { Text, TextSize, TextTheme } from './Text';
 
 export default {
-    title: 'shared/Text',
-    component: Text,
-    argTypes: {
-        backgroundColor: { control: 'color' },
-    },
+  title: 'shared/Text',
+  component: Text,
+  argTypes: {
+    backgroundColor: { control: 'color' },
+  },
 } as ComponentMeta<typeof Text>;
 
 const Template: ComponentStory<typeof Text> = (args) => <Text {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-    title: 'Title Primary',
-    text: 'Text Primary',
+  title: 'Title Primary',
+  text: 'Text Primary',
 };
 
 export const Error = Template.bind({});
 Error.args = {
-    title: 'Error Primary',
-    text: 'Error Primary',
-    theme: TextTheme.ERROR,
+  title: 'Error Primary',
+  text: 'Error Primary',
+  theme: TextTheme.ERROR,
 };
 
 export const onlyTitle = Template.bind({});
 onlyTitle.args = {
-    title: 'Title Primary',
+  title: 'Title Primary',
 };
 
 export const onlyText = Template.bind({});
 onlyText.args = {
-    text: 'Text Primary',
+  text: 'Text Primary',
 };
 
 // DARK
 export const PrimaryDark = Template.bind({});
 PrimaryDark.args = {
-    title: 'Title Primary',
-    text: 'Text Primary',
+  title: 'Title Primary',
+  text: 'Text Primary',
 };
 PrimaryDark.decorators = [ThemeDecorator(Theme.DARK)];
 
 export const onlyTitleDark = Template.bind({});
 onlyTitleDark.args = {
-    title: 'Title Primary',
+  title: 'Title Primary',
 };
 PrimaryDark.decorators = [ThemeDecorator(Theme.DARK)];
 
 export const onlyTextDark = Template.bind({});
 onlyTextDark.args = {
-    text: 'Text Primary',
+  text: 'Text Primary',
 };
 PrimaryDark.decorators = [ThemeDecorator(Theme.DARK)];
 
 export const SizeL = Template.bind({});
 SizeL.args = {
-    title: 'Title Primary',
-    text: 'Text Primary',
-    size: TextSize.L,
+  title: 'Title Primary',
+  text: 'Text Primary',
+  size: TextSize.L,
 };

@@ -17,49 +17,49 @@ interface SelectProps {
 }
 
 export const Select = memo((props: SelectProps) => {
-    const {
-        className,
-        label,
-        options,
-        value,
-        onChange,
-        readonly,
-    } = props;
+  const {
+    className,
+    label,
+    options,
+    value,
+    onChange,
+    readonly,
+  } = props;
 
-    const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-        if (onChange) {
-            onChange(e.target.value);
-        }
-    };
+  const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+    if (onChange) {
+      onChange(e.target.value);
+    }
+  };
 
-    const optionList = useMemo(() => options?.map((opt) => (
-        <option
-            key={opt.value}
-            className={cls.option}
-            value={opt.value}
-        >
-            {opt.content}
-        </option>
-    )), [options]);
+  const optionList = useMemo(() => options?.map((opt) => (
+    <option
+      key={opt.value}
+      className={cls.option}
+      value={opt.value}
+    >
+      {opt.content}
+    </option>
+  )), [options]);
 
-    const mods: Mods = {};
+  const mods: Mods = {};
 
-    return (
-        <div className={classNames(cls.Wrapper, mods, [className])}>
-            {label && (
-                <span className={cls.label}>
-                    {`${label}>`}
-                </span>
-            )}
+  return (
+    <div className={classNames(cls.Wrapper, mods, [className])}>
+      {label && (
+        <span className={cls.label}>
+          {`${label}>`}
+        </span>
+      )}
 
-            <select
-                disabled={readonly}
-                className={cls.select}
-                value={value}
-                onChange={onChangeHandler}
-            >
-                {optionList}
-            </select>
-        </div>
-    );
+      <select
+        disabled={readonly}
+        className={cls.select}
+        value={value}
+        onChange={onChangeHandler}
+      >
+        {optionList}
+      </select>
+    </div>
+  );
 });

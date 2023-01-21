@@ -22,44 +22,44 @@ export enum AppRoutes {
 }
 
 export const RoutePath: Record<AppRoutes, string> = {
-    [AppRoutes.MAIN]: '/',
-    [AppRoutes.ABOUT]: '/about',
-    [AppRoutes.PROFILE]: '/profile/', // + "id"
-    [AppRoutes.ARTICLES]: '/articles',
-    [AppRoutes.ARTICLE_DETAILS]: '/articles/', // + :id
+  [AppRoutes.MAIN]: '/',
+  [AppRoutes.ABOUT]: '/about',
+  [AppRoutes.PROFILE]: '/profile/', // + "id"
+  [AppRoutes.ARTICLES]: '/articles',
+  [AppRoutes.ARTICLE_DETAILS]: '/articles/', // + :id
 
-    // last
-    [AppRoutes.NOT_FOUND]: '*',
+  // last
+  [AppRoutes.NOT_FOUND]: '*',
 };
 
 export const routeConfig: Record<AppRoutes, AppRouterProps> = {
-    [AppRoutes.MAIN]: {
-        path: RoutePath.main,
-        element: <MainPage />,
-    },
-    [AppRoutes.ABOUT]: {
-        path: RoutePath.about,
-        element: <AboutPage />,
-    },
-    [AppRoutes.PROFILE]: {
-        path: `${RoutePath.profile}:id`,
-        element: <ProfilePage />,
-        authOnly: true,
-    },
-    [AppRoutes.ARTICLES]: {
-        path: RoutePath.articles,
-        element: <ArticlesPage />,
-        authOnly: true,
-    },
-    [AppRoutes.ARTICLE_DETAILS]: {
-        path: `${RoutePath.article_details}:id`,
-        element: <ArticleDetailsPage />,
-        authOnly: true,
-    },
+  [AppRoutes.MAIN]: {
+    path: RoutePath.main,
+    element: <MainPage />,
+  },
+  [AppRoutes.ABOUT]: {
+    path: RoutePath.about,
+    element: <AboutPage />,
+  },
+  [AppRoutes.PROFILE]: {
+    path: `${RoutePath.profile}:id`,
+    element: <ProfilePage />,
+    authOnly: true,
+  },
+  [AppRoutes.ARTICLES]: {
+    path: RoutePath.articles,
+    element: <ArticlesPage />,
+    authOnly: true,
+  },
+  [AppRoutes.ARTICLE_DETAILS]: {
+    path: `${RoutePath.article_details}:id`,
+    element: <ArticleDetailsPage />,
+    authOnly: true,
+  },
 
-    // last
-    [AppRoutes.NOT_FOUND]: {
-        path: RoutePath.not_found,
-        element: <NotFoundPage />,
-    },
+  // last
+  [AppRoutes.NOT_FOUND]: {
+    path: RoutePath.not_found,
+    element: <NotFoundPage />,
+  },
 };

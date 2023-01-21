@@ -12,30 +12,30 @@ interface CountrySelectProps {
 }
 
 const options = [
-    { value: Country.Armenia, content: Country.Armenia },
-    { value: Country.Ukraine, content: Country.Ukraine },
-    { value: Country.Belarus, content: Country.Belarus },
-    { value: Country.Kazakhstan, content: Country.Kazakhstan },
-    { value: Country.Germany, content: Country.Germany },
+  { value: Country.Armenia, content: Country.Armenia },
+  { value: Country.Ukraine, content: Country.Ukraine },
+  { value: Country.Belarus, content: Country.Belarus },
+  { value: Country.Kazakhstan, content: Country.Kazakhstan },
+  { value: Country.Germany, content: Country.Germany },
 ];
 
 export const CountrySelect = memo(({
-    className, value, onChange, readonly,
+  className, value, onChange, readonly,
 }: CountrySelectProps) => {
-    const { t } = useTranslation();
+  const { t } = useTranslation();
 
-    const onChangeHandler = useCallback((value: string) => {
-        onChange?.(value as Country);
-    }, [onChange]);
+  const onChangeHandler = useCallback((value: string) => {
+    onChange?.(value as Country);
+  }, [onChange]);
 
-    return (
-        <Select
-            className={classNames('', {}, [className])}
-            label={t('Укажите страну')}
-            options={options}
-            value={value}
-            onChange={onChangeHandler}
-            readonly={readonly}
-        />
-    );
+  return (
+    <Select
+      className={classNames('', {}, [className])}
+      label={t('Укажите страну')}
+      options={options}
+      value={value}
+      onChange={onChangeHandler}
+      readonly={readonly}
+    />
+  );
 });

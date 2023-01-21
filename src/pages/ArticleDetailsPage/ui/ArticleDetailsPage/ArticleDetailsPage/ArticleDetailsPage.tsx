@@ -2,7 +2,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
 import { ArticleDetails } from 'entities/Article';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Text } from 'shared/ui/Text/Text';
 import { CommentList } from 'entities/Comment';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
@@ -12,6 +12,9 @@ import { fetchCommentsByArticleId } from 'pages/ArticleDetailsPage/model/service
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { AddCommentForm } from 'features/addCommentForm';
 import { addCommentForArticle } from 'pages/ArticleDetailsPage/model/services/addCommentForArticle/addCommentForArticle';
+import { Button, ThemeButton } from 'shared/ui/Button/Button';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { Page } from 'shared/ui/Page/Page';
 import { getArticleCommentsIsLoading } from '../../../model/selectors/comments';
 import { articleDetailsCommentsReducer, getArticleComments } from '../../../model/slices/articleDetailsCommentsSlice';
 import cls from './ArticleDetailsPage.module.scss';
@@ -21,46 +24,54 @@ interface ArticleDetailsPageProps {
 }
 
 const reducers: ReducersList = {
-    articleDetailsComments: articleDetailsCommentsReducer,
+  articleDetailsComments: articleDetailsCommentsReducer,
 };
 
 const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
-    const { t } = useTranslation('article-details');
-    const { id } = useParams<{ id: string }>();
-    const dispatch = useAppDispatch();
-    const comments = useSelector(getArticleComments.selectAll);
-    const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
+  const { t } = useTranslation('article-details');
+  const { id } = useParams<{ id: string }>();
+  const dispatch = useAppDispatch();
+  const comments = useSelector(getArticleComments.selectAll);
+  const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
+  const navigate = useNavigate();
 
-    const onSendComment = useCallback((text: string) => {
-        dispatch(addCommentForArticle(text));
-    }, [dispatch]);
+  const onBackToList = useCallback(() => {
+    navigate(RoutePath.articles);
+  }, [navigate]);
 
-    useInitialEffect(() => {
-        dispatch(fetchCommentsByArticleId(id));
-    });
+  const onSendComment = useCallback((text: string) => {
+    dispatch(addCommentForArticle(text));
+  }, [dispatch]);
 
-    if (!id) {
-        return (
-            <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
-                {t('Cтатья не найдена')}
-            </div>
-        );
-    }
+  useInitialEffect(() => {
+    dispatch(fetchCommentsByArticleId(id));
+  });
 
+  if (!id) {
     return (
-        <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
-                <ArticleDetails id={id} />
-                <Text className={cls.commentTitle} title={t('Комментарии')} />
-                <AddCommentForm onSendComment={onSendComment} />
-                <CommentList
-                    isLoading={commentsIsLoading}
-                    comments={comments}
-                />
-            </div>
-
-        </DynamicModuleLoader>
+      <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
+        {t('Cтатья не найдена')}
+      </Page>
     );
+  }
+
+  return (
+    <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
+      <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
+        <Button theme={ThemeButton.OUTLINE} onClick={onBackToList}>
+          {t('Назад к списку')}
+        </Button>
+        <ArticleDetails id={id} />
+        <Text className={cls.commentTitle} title={t('Комментарии')} />
+        <AddCommentForm onSendComment={onSendComment} />
+        <CommentList
+          isLoading={commentsIsLoading}
+          comments={comments}
+        />
+      </Page>
+
+    </DynamicModuleLoader>
+  );
 };
 
 export default memo(ArticleDetailsPage);

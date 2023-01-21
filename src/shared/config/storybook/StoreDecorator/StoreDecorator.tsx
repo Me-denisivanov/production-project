@@ -8,18 +8,18 @@ import { articleDetailsCommentsReducer } from 'pages/ArticleDetailsPage/model/sl
 import { ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
 const defaultAsyncReducers: ReducersList = {
-    loginForm: loginReducer,
-    profile: profileReducer,
-    articleDetails: articleDetailsReducer,
-    addCommentForm: addCommentFormReducer,
-    articleDetailsComments: articleDetailsCommentsReducer,
+  loginForm: loginReducer,
+  profile: profileReducer,
+  articleDetails: articleDetailsReducer,
+  addCommentForm: addCommentFormReducer,
+  articleDetailsComments: articleDetailsCommentsReducer,
 };
 
 export const StoreDecorator = (
-    state: DeepPartial<StateSchema>,
-    asyncReducers?: ReducersList,
+  state: DeepPartial<StateSchema>,
+  asyncReducers?: ReducersList,
 ) => (StoryComponent: Story) => (
-    <StoreProvider initialState={state} asyncReducers={{ ...defaultAsyncReducers, ...asyncReducers }}>
-        <StoryComponent />
-    </StoreProvider>
+  <StoreProvider initialState={state} asyncReducers={{ ...defaultAsyncReducers, ...asyncReducers }}>
+    <StoryComponent />
+  </StoreProvider>
 );

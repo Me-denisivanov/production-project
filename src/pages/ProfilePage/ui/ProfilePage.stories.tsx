@@ -8,14 +8,14 @@ import { Currency } from 'entities/Currency';
 import { Country } from 'entities/Country';
 
 export default {
-    title: 'pages/ProfilePage',
-    component: ProfilePage,
-    argTypes: {
-        backgroundColor: { control: 'color' },
-    },
-    args: {
-        to: '/',
-    },
+  title: 'pages/ProfilePage',
+  component: ProfilePage,
+  argTypes: {
+    backgroundColor: { control: 'color' },
+  },
+  args: {
+    to: '/',
+  },
 } as ComponentMeta<typeof ProfilePage>;
 
 const Template: ComponentStory<typeof ProfilePage> = (args) => <ProfilePage {...args} />;
@@ -23,31 +23,31 @@ const Template: ComponentStory<typeof ProfilePage> = (args) => <ProfilePage {...
 export const Normal = Template.bind({});
 Normal.args = {};
 Normal.decorators = [StoreDecorator({
-    profile: {
-        form: {
-            username: 'admin',
-            age: 22,
-            country: Country.Ukraine,
-            lastname: 'denis',
-            first: 'asdqwe',
-            city: 'Asdq',
-            currency: Currency.UAH,
-        },
+  profile: {
+    form: {
+      username: 'admin',
+      age: 22,
+      country: Country.Ukraine,
+      lastname: 'denis',
+      first: 'asdqwe',
+      city: 'Asdq',
+      currency: Currency.UAH,
     },
+  },
 })];
 
 export const Dark = Template.bind({});
 Dark.args = {};
 Dark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({
-    profile: {
-        form: {
-            username: 'admin',
-            age: 22,
-            country: Country.Ukraine,
-            lastname: 'denis',
-            first: 'asdqwe',
-            city: 'Asdq',
-            currency: Currency.UAH,
-        },
+  profile: {
+    form: {
+      username: 'admin',
+      age: 22,
+      country: Country.Ukraine,
+      lastname: 'denis',
+      first: 'asdqwe',
+      city: 'Asdq',
+      currency: Currency.UAH,
     },
+  },
 })];
