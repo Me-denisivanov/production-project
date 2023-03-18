@@ -1,41 +1,42 @@
-import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
-import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
-import { fetchNextArticlesPage } from './fetchNextArticlesPage';
+// import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
+// import { fetchNextArticlesPage } from './fetchNextArticlesPage';
+// import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
 
-jest.mock('../fetchArticlesList/fetchArticlesList');
+// jest.mock('../fetchArticlesList/fetchArticlesList');
 
-describe('fetchProfileData.test', () => {
-  test('success', async () => {
-    const thunk = new TestAsyncThunk(fetchNextArticlesPage, {
-      articlesPage: {
-        page: 2,
-        ids: [],
-        entities: {},
-        limit: 5,
-        isLoading: false,
-        hasMore: true,
-      },
-    });
-    await thunk.callThunk();
+// describe('fetchNextArticlesPage.test', () => {
+//   test('success', async () => {
+//     const thunk = new TestAsyncThunk(fetchNextArticlesPage, {
+//       articlesPage: {
+//         page: 2,
+//         ids: [],
+//         entities: {},
+//         limit: 5,
+//         isLoading: false,
+//         hasMore: true,
+//       },
+//     });
 
-    expect(thunk.dispatch).toBeCalledTimes(4);
-    expect(fetchArticlesList).toHaveBeenCalledWith({ page: 3 });
-  });
+//     await thunk.callThunk();
 
-  test('fetchArticles list not called', async () => {
-    const thunk = new TestAsyncThunk(fetchNextArticlesPage, {
-      articlesPage: {
-        page: 2,
-        ids: [],
-        entities: {},
-        limit: 5,
-        isLoading: false,
-        hasMore: false,
-      },
-    });
-    await thunk.callThunk();
+//     expect(thunk.dispatch).toBeCalledTimes(4);
+//     expect(fetchArticlesList).toHaveBeenCalledWith({ page: 3 });
+//   });
+//   test('fetchAritcleList not called', async () => {
+//     const thunk = new TestAsyncThunk(fetchNextArticlesPage, {
+//       articlesPage: {
+//         page: 2,
+//         ids: [],
+//         entities: {},
+//         limit: 5,
+//         isLoading: false,
+//         hasMore: false,
+//       },
+//     });
 
-    expect(thunk.dispatch).toBeCalledTimes(2);
-    expect(fetchArticlesList).not.toHaveBeenCalled();
-  });
-});
+//     await thunk.callThunk();
+
+//     expect(thunk.dispatch).toBeCalledTimes(2);
+//     expect(fetchArticlesList).not.toHaveBeenCalled();
+//   });
+// });

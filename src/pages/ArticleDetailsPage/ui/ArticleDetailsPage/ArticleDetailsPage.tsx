@@ -15,12 +15,12 @@ import { addCommentForArticle } from 'pages/ArticleDetailsPage/model/services/ad
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { Page } from 'shared/ui/Page/Page';
-import { getArticleCommentsIsLoading } from '../../../model/selectors/comments';
-import { articleDetailsCommentsReducer, getArticleComments } from '../../../model/slices/articleDetailsCommentsSlice';
+import { getArticleCommentsIsLoading } from '../../model/selectors/comments';
+import { articleDetailsCommentsReducer, getArticleComments } from '../../model/slices/articleDetailsCommentsSlice';
 import cls from './ArticleDetailsPage.module.scss';
 
 interface ArticleDetailsPageProps {
-    className?: string;
+  className?: string;
 }
 
 const reducers: ReducersList = {
